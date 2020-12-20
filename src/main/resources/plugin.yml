@@ -5,3 +5,5 @@ api-version: 1.16
 authors: [ sebastn_chan ]
 description: A simple economy plugin with MongoDB
 website: https://rigox.club
+depend:
+  - PlaceholderAPI
