@@ -3,7 +3,11 @@ package club.rigox.cherry;
 import club.rigox.cherry.database.MongoDB;
 import club.rigox.cherry.utils.Config;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static club.rigox.cherry.utils.Logger.error;
 import static club.rigox.cherry.utils.Logger.info;
@@ -14,6 +18,8 @@ public final class Cherry extends JavaPlugin {
     private MongoDB mongo;
     private Config config;
     private FileConfiguration database;
+
+    private Map<Player, Double> credits = new LinkedHashMap<>();
 
     @Override
     public void onEnable() {
@@ -57,5 +63,9 @@ public final class Cherry extends JavaPlugin {
 
     public MongoDB getMongo() {
         return mongo;
+    }
+
+    public Map<Player, Double> getCredits() {
+        return credits;
     }
 }
