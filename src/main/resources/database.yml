@@ -1,0 +1,7 @@
+MONGO:
+  HOST: rigoxclub.7rnl2.mongodb.net
+  DATABASE: economy
+  AUTH:
+    USERNAME: rigox
+    PASSWORD: rigoxAdmin
+
