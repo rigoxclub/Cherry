@@ -29,6 +29,7 @@ public class PlayerListener implements Listener {
         Double mapCredits = cherry.getCredits().get(player);
 
         cherry.getMongo().updateMongoCredits(player.getUniqueId(), mapCredits);
+        cherry.getCredits().remove(player);
     }
 
 }
