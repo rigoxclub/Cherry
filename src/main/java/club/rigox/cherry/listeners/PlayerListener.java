@@ -7,7 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 
 public class PlayerListener implements Listener {
-    private Cherry cherry;
+    private final Cherry cherry;
 
     public PlayerListener (Cherry plugin) {
         this.cherry = plugin;
@@ -17,8 +17,9 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onPlayerLogin(PlayerLoginEvent e) {
         Player player = e.getPlayer();
+        Double dbCredits = cherry.getMongo().getMongoCredits(player.getUniqueId());
 
-//        cherry.getCredits().put(Player);
+        cherry.getCredits().put(player, dbCredits);
     }
 
 }
