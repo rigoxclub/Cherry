@@ -3,8 +3,10 @@ package club.rigox.cherry;
 import club.rigox.cherry.api.Economy;
 import club.rigox.cherry.commands.CherryCMD;
 import club.rigox.cherry.database.MongoDB;
+import club.rigox.cherry.hooks.Placeholders;
 import club.rigox.cherry.listeners.PlayerListener;
 import club.rigox.cherry.utils.Config;
+import club.rigox.scoreboard.ScoreboardAPI;
 import co.aikar.commands.PaperCommandManager;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -17,6 +19,7 @@ import static club.rigox.cherry.utils.Logger.*;
 
 public final class Cherry extends JavaPlugin {
     public static Cherry instance;
+    public static ScoreboardAPI scoreboardAPI;
 
     private MongoDB mongo;
     private Config config;
@@ -29,6 +32,7 @@ public final class Cherry extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        scoreboardAPI = ScoreboardAPI.instance;
 
         mongo = new MongoDB(this);
         economy = new Economy(this);
@@ -53,6 +57,7 @@ public final class Cherry extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
+        new Placeholders(this).register();
         info("Hooked with PlaceholderAPI successfully!");
 
         if (getServer().getPluginManager().getPlugin("ScoreboardAPI") == null) {
@@ -99,5 +104,9 @@ public final class Cherry extends JavaPlugin {
 
     public Economy getEconomy() {
         return economy;
+    }
+
+    public ScoreboardAPI getScoreboardAPI() {
+        return scoreboardAPI;
     }
 }

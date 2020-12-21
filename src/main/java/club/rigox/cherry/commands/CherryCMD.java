@@ -1,6 +1,7 @@
 package club.rigox.cherry.commands;
 
 import club.rigox.cherry.Cherry;
+import club.rigox.cherry.api.Economy;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.CommandPermission;
