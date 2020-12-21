@@ -1,8 +1,11 @@
 package club.rigox.cherry;
 
+import club.rigox.cherry.api.Economy;
+import club.rigox.cherry.commands.CherryCMD;
 import club.rigox.cherry.database.MongoDB;
 import club.rigox.cherry.listeners.PlayerListener;
 import club.rigox.cherry.utils.Config;
+import co.aikar.commands.PaperCommandManager;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,6 +22,8 @@ public final class Cherry extends JavaPlugin {
     private Config config;
     private FileConfiguration database;
 
+    private Economy economy;
+
     private Map<Player, Double> credits = new LinkedHashMap<>();
 
     @Override
@@ -26,10 +31,12 @@ public final class Cherry extends JavaPlugin {
         instance = this;
 
         mongo = new MongoDB(this);
+        economy = new Economy(this);
 
         registerHooks();
         loadConfigs();
         registerListeners();
+        registerCommands();
         mongo.connect();
     }
 
@@ -60,6 +67,12 @@ public final class Cherry extends JavaPlugin {
         info("PlayerListener loaded");
     }
 
+    public void registerCommands() {
+        PaperCommandManager manager = new PaperCommandManager(this);
+        manager.registerCommand(new CherryCMD(this));
+        info("Plugin commands registered");
+    }
+
     public void loadConfigs() {
         config = new Config(this);
         this.database = config.createConfig("database");
@@ -82,5 +95,9 @@ public final class Cherry extends JavaPlugin {
 
     public Map<Player, Double> getCredits() {
         return credits;
+    }
+
+    public Economy getEconomy() {
+        return economy;
     }
 }
