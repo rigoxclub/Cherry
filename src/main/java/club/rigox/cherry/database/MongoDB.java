@@ -1,16 +1,17 @@
 package club.rigox.cherry.database;
 
 import club.rigox.cherry.Cherry;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.*;
+
+import java.util.Objects;
+import java.util.UUID;
 
 import static club.rigox.cherry.utils.Logger.info;
+import static club.rigox.cherry.utils.Logger.warn;
 
 public class MongoDB {
     private final Cherry cherry;
-    private MongoCollection playerCollection;
+    private DBCollection playerCollection;
     private MongoClient client;
 
     public MongoDB (Cherry plugin) {
@@ -25,12 +26,32 @@ public class MongoDB {
 
         client = new MongoClient(uri);
 
-        MongoDatabase database = client.getDatabase(cherry.getDatabase().getString("MONGO.DATABASE"));
+        String databaseString = Objects.requireNonNull(cherry.getDatabase().getString("MONGO.DATABASE"));
+        DB database = client.getDB(databaseString);
         playerCollection = database.getCollection("players");
     }
 
     public void close() {
         client.close();
         info("MongoDB connection has been closed!");
+    }
+
+    public double getMongoCredits(UUID uuid) {
+        DBObject r = new BasicDBObject("UUID", uuid.toString());
+        DBObject found = playerCollection.findOne(r);
+
+        if (found == null) {
+            warn("Player has been added to the database");
+            storePlayer(uuid, 100.0);
+            return 100.0;
+        }
+
+        return (double) found.get("credits");
+    }
+
+    public void storePlayer(UUID uuid, Double credits) {
+        DBObject object = new BasicDBObject("UUID", uuid.toString());
+        object.put("credits", credits);
+        playerCollection.insert(object);
     }
 }
