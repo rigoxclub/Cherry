@@ -6,8 +6,7 @@ import com.mongodb.*;
 import java.util.Objects;
 import java.util.UUID;
 
-import static club.rigox.cherry.utils.Logger.info;
-import static club.rigox.cherry.utils.Logger.warn;
+import static club.rigox.cherry.utils.Logger.*;
 
 public class MongoDB {
     private final Cherry cherry;
@@ -60,7 +59,7 @@ public class MongoDB {
         DBObject found = playerCollection.findOne(r);
 
         if (found == null) {
-            warn("Player has been added to the database while being checked.");
+            debug("Player has been added to the database while being checked.");
             storePlayer(uuid, 100.0);
             return;
         }
