@@ -1,6 +1,7 @@
 package club.rigox.cherry;
 
 import club.rigox.cherry.database.MongoDB;
+import club.rigox.cherry.listeners.PlayerListener;
 import club.rigox.cherry.utils.Config;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -29,6 +30,7 @@ public final class Cherry extends JavaPlugin {
 
         registerHooks();
         loadConfigs();
+        registerListeners();
         mongo.connect();
     }
 
@@ -50,6 +52,11 @@ public final class Cherry extends JavaPlugin {
             return;
         }
         info("Hooked with ScoreboardAPI successfully!");
+    }
+
+    public void registerListeners() {
+        new PlayerListener(this);
+        info("PlayerListener loaded");
     }
 
     public void loadConfigs() {

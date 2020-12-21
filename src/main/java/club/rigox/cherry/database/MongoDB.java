@@ -54,4 +54,20 @@ public class MongoDB {
         object.put("credits", credits);
         playerCollection.insert(object);
     }
+
+    public void updateMongoCredits(UUID uuid, Double credits) {
+        DBObject r = new BasicDBObject("UUID", uuid.toString());
+        DBObject found = playerCollection.findOne(r);
+
+        if (found == null) {
+            warn("Player has been added to the database while being checked.");
+            storePlayer(uuid, 100.0);
+            return;
+        }
+
+        BasicDBObject set = new BasicDBObject("$set", r);
+        set.append("$set", new BasicDBObject("credits", credits));
+        playerCollection.update(found, set);
+    }
+
 }
