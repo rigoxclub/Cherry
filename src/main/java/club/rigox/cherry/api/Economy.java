@@ -15,14 +15,14 @@ public class Economy {
     }
 
     public void sumCredits(Player player, Double credits) {
-        double dbCredits = cherry.getMongo().getMongoCredits(player.getUniqueId());
-        cherry.getCredits().put(player, dbCredits + credits);
+        double mapCredits = cherry.getCredits().get(player);
+        cherry.getCredits().put(player, mapCredits + credits);
         updateScoreboard(player);
     }
 
     public void subtractCredits(Player player, Double credits) {
-        double dbCredits = cherry.getMongo().getMongoCredits(player.getUniqueId());
-        cherry.getCredits().put(player, dbCredits - credits);
+        double mapCredits = cherry.getCredits().get(player);
+        cherry.getCredits().put(player, mapCredits - credits);
         updateScoreboard(player);
     }
 

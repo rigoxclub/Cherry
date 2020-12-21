@@ -1,7 +1,6 @@
 package club.rigox.cherry.commands;
 
 import club.rigox.cherry.Cherry;
-import club.rigox.cherry.api.Economy;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.CommandPermission;
@@ -39,7 +38,7 @@ public class CherryCMD extends BaseCommand {
             Double credits = Double.parseDouble(args[1]);
 
             cherry.getEconomy().sumCredits(target, credits);
-            sendMessage(sender, String.format("You give %s credits to %s economy!", credits, target));
+            sendMessage(sender, String.format("&aYou give %s credits to %s economy!", credits, target.getName()));
         }
     }
 }
