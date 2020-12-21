@@ -10,8 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static club.rigox.cherry.utils.Logger.error;
-import static club.rigox.cherry.utils.Logger.info;
+import static club.rigox.cherry.utils.Logger.*;
 
 public final class Cherry extends JavaPlugin {
     public static Cherry instance;
@@ -37,6 +36,8 @@ public final class Cherry extends JavaPlugin {
     @Override
     public void onDisable() {
         mongo.close();
+        saveOnStop();
+        info("Cherry Economy has been disabled!");
     }
 
     public void registerHooks() {
@@ -62,6 +63,13 @@ public final class Cherry extends JavaPlugin {
     public void loadConfigs() {
         config = new Config(this);
         this.database = config.createConfig("database");
+    }
+
+    public void saveOnStop() {
+        for (Player player : getServer().getOnlinePlayers()) {
+            getMongo().updateMongoCredits(player.getUniqueId(), getCredits().get(player));
+            debug(String.format("Saving %s credits...", player.getName()));
+        }
     }
 
     public FileConfiguration getDatabase() {
