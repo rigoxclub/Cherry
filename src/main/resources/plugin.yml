@@ -7,3 +7,4 @@ description: A simple economy plugin with MongoDB
 website: https://rigox.club
 depend:
   - PlaceholderAPI
+  - ScoreboardAPI
