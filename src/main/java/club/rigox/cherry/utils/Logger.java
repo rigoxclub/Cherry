@@ -1,8 +1,10 @@
 package club.rigox.cherry.utils;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class Logger {
     public static String color (String str) {
@@ -27,5 +29,9 @@ public class Logger {
 
     public static void sendMessage(CommandSender sender, String str) {
         sender.sendMessage(color(str));
+    }
+
+    public static String parseField(String field, Player p) {
+        return ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, field));
     }
 }

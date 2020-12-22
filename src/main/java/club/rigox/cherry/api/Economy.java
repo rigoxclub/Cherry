@@ -3,6 +3,8 @@ package club.rigox.cherry.api;
 import club.rigox.cherry.Cherry;
 import org.bukkit.entity.Player;
 
+import static club.rigox.cherry.utils.Logger.parseField;
+
 public class Economy {
     private Cherry cherry;
 
@@ -11,7 +13,7 @@ public class Economy {
     }
 
     public void updateScoreboard(Player player) {
-        cherry.getScoreboardAPI().getScoreboard().setScoreBoard(player, "general");
+        cherry.getScoreboardAPI().getAPI().setLineMessage(4, "&fCredits: &e%cherry_credits%", player);
     }
 
     public void sumCredits(Player player, Double credits) {
