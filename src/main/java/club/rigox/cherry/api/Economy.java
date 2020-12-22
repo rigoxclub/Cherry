@@ -3,8 +3,6 @@ package club.rigox.cherry.api;
 import club.rigox.cherry.Cherry;
 import org.bukkit.entity.Player;
 
-import static club.rigox.cherry.utils.Logger.parseField;
-
 public class Economy {
     private Cherry cherry;
 
