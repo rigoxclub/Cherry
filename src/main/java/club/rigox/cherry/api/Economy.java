@@ -24,7 +24,7 @@ public class Economy {
         OfflinePlayer target = cherry.getServer().getOfflinePlayer(uuid);
 
         if (!target.hasPlayedBefore()) {
-            sendMessage(sender, String.format(getLangString("PLAYER-NOT-EXISTS")));
+            sendMessage(sender, getLangString("PLAYER-NOT-EXISTS"));
             return;
         }
 
@@ -42,35 +42,66 @@ public class Economy {
         updateScoreboard(target);
     }
 
-//    public void sumCredits(CommandSender sender, OfflinePlayer target, Double credits) {
-//        double dbCredits = cherry.getMongo().getMongoCredits(target.getUniqueId());
-//        double mapCredits = cherry.getCredits().get(target.getUniqueId());
-//
-//        if (!target.isOnline()) {
-//
-//            if (!target.hasPlayedBefore()) {
-//                sendMessage(sender, String.format(getLangString("PLAYER-NOT-EXISTS"), target.getName()));
-//                return;
-//            }
-//            cherry.getMongo().updateMongoCredits(target.getUniqueId(), dbCredits + credits);
-//
-//            sendMessage(sender, String.format(getLangString("GIVE.OFFLINE"), credits, target.getName()));
-//            return;
-//        }
-//        cherry.getCredits().put(target.getUniqueId(), mapCredits + credits);
-//
-//        sendMessage(sender, String.format(getLangString("GIVE.ONLINE"), credits, target.getName()));
-//        updateScoreboard(target);
-//    }
+    public void subtractCredits(CommandSender sender, UUID uuid, Double credits) {
+        OfflinePlayer target = cherry.getServer().getOfflinePlayer(uuid);
 
-//
-//    public void setCredits(Player player, Double credits) {
-//        cherry.getCredits().put(player, credits);
-//        updateScoreboard(player);
-//    }
-//
-//    public void resetCredits(Player player) {
-//        cherry.getCredits().put(player, 0.0);
-//        updateScoreboard(player);
-//    }
+        if (!target.hasPlayedBefore()) {
+            sendMessage(sender, getLangString("PLAYER-NOT-EXISTS"));
+            return;
+        }
+
+        if (!target.isOnline()) {
+            double dbCredits = cherry.getMongo().getMongoCredits(uuid);
+            cherry.getMongo().updateMongoCredits(target.getUniqueId(), dbCredits - credits);
+
+            sendMessage(sender, String.format(getLangString("TAKE.OFFLINE"), credits, target.getName()));
+            return;
+        }
+        double mapCredits = cherry.getCredits().get(uuid);
+        cherry.getCredits().put(target.getUniqueId(), mapCredits - credits);
+
+        sendMessage(sender, String.format(getLangString("TAKE.ONLINE"), credits, target.getName()));
+        updateScoreboard(target);
+    }
+
+    public void setCredits(CommandSender sender, UUID uuid, Double credits) {
+        OfflinePlayer target = cherry.getServer().getOfflinePlayer(uuid);
+
+        if (!target.hasPlayedBefore()) {
+            sendMessage(sender, getLangString("PLAYER-NOT-EXISTS"));
+            return;
+        }
+
+        if (!target.isOnline()) {
+            cherry.getMongo().updateMongoCredits(target.getUniqueId(), credits);
+
+            sendMessage(sender, String.format(getLangString("SET.OFFLINE"), credits, target.getName()));
+            return;
+        }
+        double mapCredits = cherry.getCredits().get(uuid);
+        cherry.getCredits().put(target.getUniqueId(), credits);
+
+        sendMessage(sender, String.format(getLangString("SET.ONLINE"), credits, target.getName()));
+        updateScoreboard(target);
+    }
+
+    public void resetCredits(CommandSender sender, UUID uuid) {
+        OfflinePlayer target = cherry.getServer().getOfflinePlayer(uuid);
+
+        if (!target.hasPlayedBefore()) {
+            sendMessage(sender, getLangString("PLAYER-NOT-EXISTS"));
+            return;
+        }
+
+        if (!target.isOnline()) {
+            cherry.getMongo().updateMongoCredits(target.getUniqueId(), 0.0);
+
+            sendMessage(sender, String.format(getLangString("RESET.OFFLINE"), target.getName()));
+            return;
+        }
+        cherry.getCredits().put(target.getUniqueId(), 0.0);
+
+        sendMessage(sender, String.format(getLangString("SET.ONLINE"), target.getName()));
+        updateScoreboard(target);
+    }
 }
