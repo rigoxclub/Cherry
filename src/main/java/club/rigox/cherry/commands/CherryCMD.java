@@ -42,6 +42,58 @@ public class CherryCMD extends BaseCommand {
         }
     }
 
+    @Subcommand("take")
+    @CommandPermission("cherry.take")
+    public void takeCommand(CommandSender sender, String[] args) {
+        if (args.length == 1) {
+            sendMessage(sender, getLangString("USAGE.TAKE"));
+            return;
+        }
+
+        if (args.length == 2) {
+            UUID uuid = cherry.getServer().getPlayerUniqueId(args[0]);
+
+            if (!Number.isANumber(sender, args[1])) return;
+            Double credits = Double.parseDouble(args[1]);
+
+            cherry.getEconomy().subtractCredits(sender, uuid, credits);
+        }
+    }
+
+    @Subcommand("set")
+    @CommandPermission("cherry.set")
+    public void setCommand(CommandSender sender, String[] args) {
+        if (args.length == 1) {
+            sendMessage(sender, getLangString("USAGE.SET"));
+            return;
+        }
+
+        if (args.length == 2) {
+            UUID uuid = cherry.getServer().getPlayerUniqueId(args[0]);
+
+            if (!Number.isANumber(sender, args[1])) return;
+            Double credits = Double.parseDouble(args[1]);
+
+            cherry.getEconomy().setCredits(sender, uuid, credits);
+        }
+    }
+
+    @Subcommand("reset")
+    @CommandPermission("cherry.reset")
+    public void resetCommand(CommandSender sender, String[] args) {
+        if (args.length == 1) {
+            sendMessage(sender, getLangString("USAGE.RESET"));
+            return;
+        }
+
+        if (args.length == 2) {
+            UUID uuid = cherry.getServer().getPlayerUniqueId(args[0]);
+
+            if (!Number.isANumber(sender, args[1])) return;
+            cherry.getEconomy().resetCredits(sender, uuid);
+        }
+    }
+
     /*
     This is ONLY for TEST PURPOSES.
      */
