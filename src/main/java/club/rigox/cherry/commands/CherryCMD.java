@@ -5,6 +5,7 @@ import club.rigox.cherry.utils.Number;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.CommandPermission;
+import co.aikar.commands.annotation.HelpCommand;
 import co.aikar.commands.annotation.Subcommand;
 import org.apache.commons.lang.math.NumberUtils;
 import org.bukkit.command.CommandSender;
@@ -88,21 +89,32 @@ public class CherryCMD extends BaseCommand {
         }
     }
 
-    /*
-    This is ONLY for TEST PURPOSES.
-     */
-    @Subcommand("debug")
-    @CommandPermission("cherry.debug")
-    public void onDebug(CommandSender sender) {
-        if (!(sender instanceof Player)) {
-            return;
-        }
+    @Subcommand("admin")
+    public void onAdminHelp(CommandSender sender) {
+        header(sender);
+        sendMessage(sender, "&8&l* &b/cherry give (player) (credits) &f- Give credits to a player.");
+        sendMessage(sender, "&8&l* &b/cherry take (player) (credits) &f- Take credits to a player.");
+        sendMessage(sender, "&8&l* &b/cherry set (player) (credits) &f- Set credits to a player.");
+        sendMessage(sender, "&8&l* &b/cherry reset (player) (credits) &f- Reset credits to a player.");
+        footer(sender);
+    }
 
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                cherry.getEconomy().sumCredits(sender, ((Player) sender).getUniqueId(), 1.0);
-            }
-        }.runTaskTimer(cherry, 0L, 1L);
+    @HelpCommand
+    public void onHelp(CommandSender sender) {
+        header(sender);
+        sendMessage(sender, "&8&l* &b/credits &f- View your credits");
+        sendMessage(sender, "&8&l* &c/cherry admin &f- Show admin command help");
+        footer(sender);
+    }
+
+    public void header(CommandSender sender) {
+        sendMessage(sender, "&7&m------------------------------------------------");
+        sendMessage(sender, "&d&lCherry Economy");
+        sendMessage(sender, "&7&oCommand Help.");
+        sendMessage(sender, "&7&m------------------------------------------------");
+    }
+
+    public void footer(CommandSender sender) {
+        sendMessage(sender, "&7&m------------------------------------------------");
     }
 }
