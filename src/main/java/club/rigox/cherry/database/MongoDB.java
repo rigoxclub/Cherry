@@ -67,7 +67,6 @@ public class MongoDB {
         BasicDBObject set = new BasicDBObject("$set", r);
         set.append("$set", new BasicDBObject("credits", credits));
         playerCollection.update(found, set);
-        debug("Player left. Saving their cool hard worked credits.");
     }
 
 }
