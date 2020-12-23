@@ -26,13 +26,12 @@ public final class Cherry extends JavaPlugin {
 
     private MongoDB mongo;
 
-    private Number number;
     private FileConfiguration database;
     private FileConfiguration lang;
 
     private Economy economy;
 
-    private Map<UUID, Double> credits = new LinkedHashMap<>();
+    private final Map<UUID, Double> credits = new LinkedHashMap<>();
 
     @Override
     public void onEnable() {
@@ -119,9 +118,5 @@ public final class Cherry extends JavaPlugin {
 
     public ScoreboardAPI getScoreboardAPI() {
         return scoreboardAPI;
-    }
-
-    public Number getNumber() {
-        return number;
     }
 }
