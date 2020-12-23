@@ -14,6 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import static club.rigox.cherry.utils.Logger.*;
 
@@ -27,7 +28,7 @@ public final class Cherry extends JavaPlugin {
 
     private Economy economy;
 
-    private Map<Player, Double> credits = new LinkedHashMap<>();
+    private Map<UUID, Double> credits = new LinkedHashMap<>();
 
     @Override
     public void onEnable() {
@@ -98,7 +99,7 @@ public final class Cherry extends JavaPlugin {
         return mongo;
     }
 
-    public Map<Player, Double> getCredits() {
+    public Map<UUID, Double> getCredits() {
         return credits;
     }
 

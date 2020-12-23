@@ -33,13 +33,13 @@ public class Placeholders extends PlaceholderExpansion {
     }
 
     @Override
-    public String onPlaceholderRequest(Player player, String identifier) {
+    public String onPlaceholderRequest(Player player, @NotNull String identifier) {
         if (player == null) {
             return "";
         }
 
         if (identifier.equals("credits")) {
-            return cherry.getCredits().get(player).toString();
+            return cherry.getCredits().get(player.getUniqueId()).toString();
         }
 
         return null;

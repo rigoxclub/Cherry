@@ -6,9 +6,12 @@ import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.CommandPermission;
 import co.aikar.commands.annotation.Subcommand;
 import org.apache.commons.lang.math.NumberUtils;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.UUID;
 
 import static club.rigox.cherry.utils.Logger.debug;
 import static club.rigox.cherry.utils.Logger.sendMessage;
@@ -30,7 +33,8 @@ public class CherryCMD extends BaseCommand {
         }
 
         if (args.length == 2) {
-            Player target = cherry.getServer().getPlayer(args[0]);
+//            Player target = cherry.getServer().getPlayer(args[0]);
+            OfflinePlayer target = cherry.getServer().getOfflinePlayer(args[0]);
 
             if (!NumberUtils.isNumber(args[1])) {
                 sendMessage(sender, "&cYou should provide a Number!");
@@ -39,11 +43,13 @@ public class CherryCMD extends BaseCommand {
 
             Double credits = Double.parseDouble(args[1]);
 
-            cherry.getEconomy().sumCredits(target, credits);
-            sendMessage(sender, String.format("&aYou give %s credits to %s economy!", credits, target.getName()));
+            cherry.getEconomy().sumCredits(sender, target, credits);
         }
     }
 
+    /*
+    This is ONLY for TEST PURPOSES.
+     */
     @Subcommand("debug")
     @CommandPermission("cherry.debug")
     public void onDebug(CommandSender sender) {
@@ -54,7 +60,7 @@ public class CherryCMD extends BaseCommand {
         new BukkitRunnable() {
             @Override
             public void run() {
-                cherry.getEconomy().sumCredits((Player) sender, 1.0);
+                cherry.getEconomy().sumCredits(sender, (Player) sender, 1.0);
                 sendMessage(sender, "&b[DEBUG] &71 credits has been added to your account!");
                 debug(String.format("Updated scoreboard for %s!", sender.getName()));
             }

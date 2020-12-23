@@ -7,6 +7,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import java.util.UUID;
+
 public class PlayerListener implements Listener {
     private final Cherry cherry;
 
@@ -17,18 +19,18 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onPlayerLogin(PlayerLoginEvent e) {
-        Player player = e.getPlayer();
-        Double dbCredits = cherry.getMongo().getMongoCredits(player.getUniqueId());
+        UUID player = e.getPlayer().getUniqueId();
+        Double dbCredits = cherry.getMongo().getMongoCredits(player);
 
         cherry.getCredits().put(player, dbCredits);
     }
 
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e) {
-        Player player = e.getPlayer();
+        UUID player = e.getPlayer().getUniqueId();
         Double mapCredits = cherry.getCredits().get(player);
 
-        cherry.getMongo().updateMongoCredits(player.getUniqueId(), mapCredits);
+        cherry.getMongo().updateMongoCredits(player, mapCredits);
         cherry.getCredits().remove(player);
     }
 
