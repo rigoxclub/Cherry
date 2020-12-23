@@ -95,7 +95,7 @@ public class CherryCMD extends BaseCommand {
         sendMessage(sender, "&8&l* &b/cherry give (player) (credits) &f- Give credits to a player.");
         sendMessage(sender, "&8&l* &b/cherry take (player) (credits) &f- Take credits to a player.");
         sendMessage(sender, "&8&l* &b/cherry set (player) (credits) &f- Set credits to a player.");
-        sendMessage(sender, "&8&l* &b/cherry reset (player) (credits) &f- Reset credits to a player.");
+        sendMessage(sender, "&8&l* &b/cherry reset (player) &f- Reset credits to a player.");
         footer(sender);
     }
 
