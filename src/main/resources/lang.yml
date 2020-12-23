@@ -1,4 +1,6 @@
 PLAYER-NOT-EXISTS: "&cThe player you specified has never joined on the server!"
+NO-PERMISSION: "&cYou don't have permission to perform this action!"
+
 NOT-A-PLAYER: "&cOnly players can perform this action!"
 NOT-A-NUMBER: "&cPlease provide a number!"
 

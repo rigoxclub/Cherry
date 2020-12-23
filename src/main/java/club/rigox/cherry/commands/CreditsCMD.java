@@ -24,6 +24,11 @@ public class CreditsCMD {
     @CommandCompletion("@players")
     public void onDefault(CommandSender sender, String[] args) {
         if (args.length == 1) {
+            if (!sender.hasPermission("cherry.credits.other")) {
+                sendMessage(sender, "NO-PERMISSION");
+                return;
+            }
+
             UUID uuid = cherry.getServer().getPlayerUniqueId(args[0]);
 
             // Sends a message to CommandSender (String on Economy.class)
@@ -31,9 +36,13 @@ public class CreditsCMD {
             return;
         }
 
+        if (!(sender instanceof Player)) {
+            sendMessage(sender, getLangString("NOT-A-PLAYER"));
+            return;
+        }
+
         Player player = (Player) sender;
         double mapCredits = cherry.getCredits().get(player.getUniqueId());
         sendMessage(player, String.format(getLangString("CREDITS.SELF"), mapCredits));
     }
-
 }
