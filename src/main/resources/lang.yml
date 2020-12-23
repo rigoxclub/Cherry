@@ -1,4 +1,5 @@
 PLAYER-NOT-EXISTS: "&cThe player you specified has never joined on the server!"
+NOT-A-PLAYER: "&cOnly players can perform this action!"
 NOT-A-NUMBER: "&cPlease provide a number!"
 
 GIVE:
