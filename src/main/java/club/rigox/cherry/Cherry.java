@@ -2,6 +2,7 @@ package club.rigox.cherry;
 
 import club.rigox.cherry.api.Economy;
 import club.rigox.cherry.commands.CherryCMD;
+import club.rigox.cherry.commands.CreditsCMD;
 import club.rigox.cherry.database.MongoDB;
 import club.rigox.cherry.hooks.Placeholders;
 import club.rigox.cherry.listeners.PlayerListener;
@@ -79,6 +80,7 @@ public final class Cherry extends JavaPlugin {
     public void registerCommands() {
         PaperCommandManager manager = new PaperCommandManager(this);
         manager.registerCommand(new CherryCMD(this));
+        manager.registerCommand(new CreditsCMD(this));
         info("Plugin commands registered");
     }
 

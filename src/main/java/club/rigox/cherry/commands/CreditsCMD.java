@@ -1,6 +1,7 @@
 package club.rigox.cherry.commands;
 
 import club.rigox.cherry.Cherry;
+import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.CommandCompletion;
 import co.aikar.commands.annotation.Default;
@@ -13,7 +14,7 @@ import static club.rigox.cherry.utils.Config.getLangString;
 import static club.rigox.cherry.utils.Logger.sendMessage;
 
 @CommandAlias("credits|balance|money")
-public class CreditsCMD {
+public class CreditsCMD extends BaseCommand {
     private final Cherry cherry;
 
     public CreditsCMD (Cherry plugin) {
