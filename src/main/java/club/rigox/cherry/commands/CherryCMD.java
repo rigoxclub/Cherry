@@ -1,19 +1,19 @@
 package club.rigox.cherry.commands;
 
 import club.rigox.cherry.Cherry;
+import club.rigox.cherry.utils.Number;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.CommandPermission;
 import co.aikar.commands.annotation.Subcommand;
 import org.apache.commons.lang.math.NumberUtils;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.UUID;
 
-import static club.rigox.cherry.utils.Logger.debug;
+import static club.rigox.cherry.utils.Config.getLangString;
 import static club.rigox.cherry.utils.Logger.sendMessage;
 
 @CommandAlias("cherry")
@@ -28,18 +28,14 @@ public class CherryCMD extends BaseCommand {
     @CommandPermission("cherry.give")
     public void giveCommand(CommandSender sender, String[] args) {
         if (args.length == 1) {
-            sendMessage(sender, "&cPlease specify credits to give!");
+            sendMessage(sender, getLangString("USAGE.GIVE"));
             return;
         }
 
         if (args.length == 2) {
             UUID uuid = cherry.getServer().getPlayerUniqueId(args[0]);
 
-            if (!NumberUtils.isNumber(args[1])) {
-                sendMessage(sender, "&cYou should provide a Number!");
-                return;
-            }
-
+            if (!Number.isANumber(sender, args[1])) return;
             Double credits = Double.parseDouble(args[1]);
 
             cherry.getEconomy().sumCredits(sender, uuid, credits);

@@ -6,6 +6,7 @@ import club.rigox.cherry.database.MongoDB;
 import club.rigox.cherry.hooks.Placeholders;
 import club.rigox.cherry.listeners.PlayerListener;
 import club.rigox.cherry.utils.Config;
+import club.rigox.cherry.utils.Number;
 import club.rigox.scoreboard.ScoreboardAPI;
 import co.aikar.commands.PaperCommandManager;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -23,6 +24,8 @@ public final class Cherry extends JavaPlugin {
     public static ScoreboardAPI scoreboardAPI;
 
     private MongoDB mongo;
+
+    private Number number;
     private FileConfiguration database;
     private FileConfiguration lang;
 
@@ -114,5 +117,9 @@ public final class Cherry extends JavaPlugin {
 
     public ScoreboardAPI getScoreboardAPI() {
         return scoreboardAPI;
+    }
+
+    public Number getNumber() {
+        return number;
     }
 }

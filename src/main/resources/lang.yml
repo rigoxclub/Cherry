@@ -1,4 +1,5 @@
 PLAYER-NOT-EXISTS: "&cThe player you specified has never joined on the server!"
+NOT-A-NUMBER: "&cPlease provide a number!"
 
 GIVE:
   ONLINE: "&8&l* &fYou give &b%s &fcredits to &b%s&f! &7(&aOnline&7)"
@@ -11,3 +12,6 @@ TAKE:
 SET:
   ONLINE: "&8&l* &fYou set &b%s &fcredits to &b%s&f! &7(&aOnline&7)"
   OFFLINE: "&8&l* &fYou set &b%s &fcredits to &b%s&f! &7(&cOffline&7)"
+
+USAGE:
+  GIVE: "&8&l* &fCommand usage: &b/cherry give (player) (credits)"

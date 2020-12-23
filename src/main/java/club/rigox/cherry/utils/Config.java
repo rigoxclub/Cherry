@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
+import static club.rigox.cherry.utils.Logger.error;
 import static club.rigox.cherry.utils.Logger.warn;
 
 public class Config {
@@ -37,7 +38,8 @@ public class Config {
 
     public static String getLangString(String path) {
         if (Cherry.instance.getLang().getString(path) == null) {
-            return "&cPlease regen the config, path specified doesn't exists!";
+            error(String.format("The folowing path doesn't exists on Lang.yml! %s, please add it.", path));
+            return "&cPlease inform this error to an administrator and let it know to review the console.";
         }
         return Cherry.instance.getLang().getString(Objects.requireNonNull(path));
     }
