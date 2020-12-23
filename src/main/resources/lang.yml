@@ -19,3 +19,8 @@ RESET:
 
 USAGE:
   GIVE: "&8&l* &fCommand usage: &b/cherry give (player) (credits)"
+
+CREDITS:
+  SELF: "&8&l* &fYou have &b%s &fcredits!"
+  ONLINE: "&8&l* &fPlayer &b%s &fhas &b%s &fcredits! &7(&aOnline&7)"
+  OFFLINE: "&8&l* &fPlayer &b%s &fhas &b%s &fcredits! &7(&cOffline&7)"
