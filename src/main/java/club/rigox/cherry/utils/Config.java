@@ -36,6 +36,9 @@ public class Config {
     }
 
     public static String getLangString(String path) {
+        if (Cherry.instance.getLang().getString(path) == null) {
+            return "&cPlease regen the config, path specified doesn't exists!";
+        }
         return Cherry.instance.getLang().getString(Objects.requireNonNull(path));
     }
 }
