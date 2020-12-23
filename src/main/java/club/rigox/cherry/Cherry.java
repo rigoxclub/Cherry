@@ -23,8 +23,8 @@ public final class Cherry extends JavaPlugin {
     public static ScoreboardAPI scoreboardAPI;
 
     private MongoDB mongo;
-    private Config config;
     private FileConfiguration database;
+    private FileConfiguration lang;
 
     private Economy economy;
 
@@ -80,19 +80,24 @@ public final class Cherry extends JavaPlugin {
     }
 
     public void loadConfigs() {
-        config = new Config(this);
+        Config config = new Config(this);
         this.database = config.createConfig("database");
+        this.lang = config.createConfig("lang");
     }
 
     public void saveOnStop() {
         for (Player player : getServer().getOnlinePlayers()) {
-            getMongo().updateMongoCredits(player.getUniqueId(), getCredits().get(player));
+            getMongo().updateMongoCredits(player.getUniqueId(), getCredits().get(player.getUniqueId()));
             debug(String.format("Saving %s credits...", player.getName()));
         }
     }
 
     public FileConfiguration getDatabase() {
         return database;
+    }
+
+    public FileConfiguration getLang() {
+        return lang;
     }
 
     public MongoDB getMongo() {

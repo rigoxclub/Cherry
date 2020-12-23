@@ -1,0 +1,5 @@
+PLAYER-NOT-EXISTS: "&c%s has never joined on the server!"
+
+GIVE:
+  ONLINE: "&8&l* &fYou give &b%s &fcredits to &b%s&f! &7(&aOnline&7)"
+  OFFLINE: "&8&l* &fYou give &b%s &fcredits to &b%s&f! &7(&cOffline&7)"

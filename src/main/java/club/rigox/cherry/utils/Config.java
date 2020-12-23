@@ -7,6 +7,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 import static club.rigox.cherry.utils.Logger.warn;
 
@@ -32,5 +33,9 @@ public class Config {
             e.printStackTrace();
         }
         return cfg;
+    }
+
+    public static String getLangString(String path) {
+        return Cherry.instance.getLang().getString(Objects.requireNonNull(path));
     }
 }

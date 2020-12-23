@@ -3,8 +3,8 @@ package club.rigox.cherry.api;
 import club.rigox.cherry.Cherry;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
+import static club.rigox.cherry.utils.Config.getLangString;
 import static club.rigox.cherry.utils.Logger.sendMessage;
 
 public class Economy {
@@ -15,10 +15,7 @@ public class Economy {
     }
 
     public void updateScoreboard(OfflinePlayer player) {
-        if (!player.isOnline()) {
-            return;
-        }
-
+        if (!player.isOnline()) return;
         cherry.getScoreboardAPI().getAPI().setLineMessage(4, "&fCredits: &e%cherry_credits%", player.getPlayer());
     }
 
@@ -26,22 +23,21 @@ public class Economy {
         if (!target.isOnline()) {
 
             if (!target.hasPlayedBefore()) {
-                sendMessage(sender, String.format("&c%s doesn't exists on the server!", target.getName()));
+                sendMessage(sender, String.format(getLangString("PLAYER-NOT-EXISTS"), target.getName()));
                 return;
             }
 
             double dbCredits = cherry.getMongo().getMongoCredits(target.getUniqueId());
             cherry.getMongo().updateMongoCredits(target.getUniqueId(), dbCredits + credits);
 
-            sendMessage(sender, String.format("&aYou give %s credits to %s economy! &7(&cOffline&7)", credits, target.getName()));
+            sendMessage(sender, String.format(getLangString("GIVE.OFFLINE"), credits, target.getName()));
             return;
         }
 
         double mapCredits = cherry.getCredits().get(target.getUniqueId());
         cherry.getCredits().put(target.getUniqueId(), mapCredits + credits);
 
-        sendMessage(sender, String.format("&aYou give %s credits to %s economy! &7(&aOnline&7)", credits, target.getName()));
-
+        sendMessage(sender, String.format(getLangString("GIVE.ONLINE"), credits, target.getName()));
         updateScoreboard(target);
     }
 
