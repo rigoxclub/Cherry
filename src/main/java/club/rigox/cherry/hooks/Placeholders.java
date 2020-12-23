@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class Placeholders extends PlaceholderExpansion {
-    private Cherry cherry;
+    private final Cherry cherry;
 
     public Placeholders (Cherry plugin) {
         this.cherry = plugin;
@@ -33,7 +33,7 @@ public class Placeholders extends PlaceholderExpansion {
     }
 
     @Override
-    public String onPlaceholderRequest(Player player, String identifier) {
+    public String onPlaceholderRequest(Player player, @NotNull String identifier) {
         if (player == null) {
             return "";
         }

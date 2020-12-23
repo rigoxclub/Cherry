@@ -3,7 +3,10 @@ package club.rigox.cherry.commands;
 import club.rigox.cherry.Cherry;
 import club.rigox.cherry.utils.Number;
 import co.aikar.commands.BaseCommand;
-import co.aikar.commands.annotation.*;
+import co.aikar.commands.annotation.CommandAlias;
+import co.aikar.commands.annotation.CommandPermission;
+import co.aikar.commands.annotation.HelpCommand;
+import co.aikar.commands.annotation.Subcommand;
 import org.bukkit.command.CommandSender;
 
 import java.util.UUID;

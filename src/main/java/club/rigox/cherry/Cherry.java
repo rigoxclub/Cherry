@@ -7,7 +7,6 @@ import club.rigox.cherry.database.MongoDB;
 import club.rigox.cherry.hooks.Placeholders;
 import club.rigox.cherry.listeners.PlayerListener;
 import club.rigox.cherry.utils.Config;
-import club.rigox.cherry.utils.Number;
 import club.rigox.scoreboard.ScoreboardAPI;
 import co.aikar.commands.PaperCommandManager;
 import org.bukkit.configuration.file.FileConfiguration;
