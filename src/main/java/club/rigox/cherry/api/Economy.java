@@ -23,20 +23,19 @@ public class Economy {
     public void sumCredits(CommandSender sender, UUID uuid, Double credits) {
         OfflinePlayer target = cherry.getServer().getOfflinePlayer(uuid);
 
-        double dbCredits = cherry.getMongo().getMongoCredits(uuid);
-        double mapCredits = cherry.getCredits().get(uuid);
+        if (!target.hasPlayedBefore()) {
+            sendMessage(sender, String.format(getLangString("PLAYER-NOT-EXISTS")));
+            return;
+        }
 
         if (!target.isOnline()) {
-
-            if (!target.hasPlayedBefore()) {
-                sendMessage(sender, String.format(getLangString("PLAYER-NOT-EXISTS"), target.getName()));
-                return;
-            }
+            double dbCredits = cherry.getMongo().getMongoCredits(uuid);
             cherry.getMongo().updateMongoCredits(target.getUniqueId(), dbCredits + credits);
 
             sendMessage(sender, String.format(getLangString("GIVE.OFFLINE"), credits, target.getName()));
             return;
         }
+        double mapCredits = cherry.getCredits().get(uuid);
         cherry.getCredits().put(target.getUniqueId(), mapCredits + credits);
 
         sendMessage(sender, String.format(getLangString("GIVE.ONLINE"), credits, target.getName()));

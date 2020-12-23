@@ -1,4 +1,4 @@
-PLAYER-NOT-EXISTS: "&c%s has never joined on the server!"
+PLAYER-NOT-EXISTS: "&cThe player you specified has never joined on the server!"
 
 GIVE:
   ONLINE: "&8&l* &fYou give &b%s &fcredits to &b%s&f! &7(&aOnline&7)"
