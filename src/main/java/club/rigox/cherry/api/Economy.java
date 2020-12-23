@@ -96,7 +96,6 @@ public class Economy {
             sendMessage(sender, String.format(getLangString("SET.OFFLINE"), credits, target.getName()));
             return;
         }
-        double mapCredits = cherry.getCredits().get(uuid);
         cherry.getCredits().put(target.getUniqueId(), credits);
 
         sendMessage(sender, String.format(getLangString("SET.ONLINE"), credits, target.getName()));

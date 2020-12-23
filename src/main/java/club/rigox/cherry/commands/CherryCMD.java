@@ -4,10 +4,7 @@ import club.rigox.cherry.Cherry;
 import club.rigox.cherry.utils.Number;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
-import org.apache.commons.lang.math.NumberUtils;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.UUID;
 
@@ -33,7 +30,7 @@ public class CherryCMD extends BaseCommand {
         if (args.length == 2) {
             UUID uuid = cherry.getServer().getPlayerUniqueId(args[0]);
 
-            if (!Number.isANumber(sender, args[1])) return;
+            if (Number.isANumber(sender, args[1])) return;
             Double credits = Double.parseDouble(args[1]);
 
             cherry.getEconomy().sumCredits(sender, uuid, credits);
@@ -51,7 +48,7 @@ public class CherryCMD extends BaseCommand {
         if (args.length == 2) {
             UUID uuid = cherry.getServer().getPlayerUniqueId(args[0]);
 
-            if (!Number.isANumber(sender, args[1])) return;
+            if (Number.isANumber(sender, args[1])) return;
             Double credits = Double.parseDouble(args[1]);
 
             cherry.getEconomy().subtractCredits(sender, uuid, credits);
@@ -69,7 +66,7 @@ public class CherryCMD extends BaseCommand {
         if (args.length == 2) {
             UUID uuid = cherry.getServer().getPlayerUniqueId(args[0]);
 
-            if (!Number.isANumber(sender, args[1])) return;
+            if (Number.isANumber(sender, args[1])) return;
             Double credits = Double.parseDouble(args[1]);
 
             cherry.getEconomy().setCredits(sender, uuid, credits);

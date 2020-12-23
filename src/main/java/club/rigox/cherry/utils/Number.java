@@ -9,9 +9,9 @@ import static club.rigox.cherry.utils.Logger.sendMessage;
 public class Number {
     public static boolean isANumber(CommandSender sender, String str) {
         if (NumberUtils.isNumber(str)) {
-            return true;
+            return false;
         }
         sendMessage(sender, getLangString("NOT-A-NUMBER"));
-        return false;
+        return true;
     }
 }
