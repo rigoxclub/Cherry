@@ -101,7 +101,7 @@ public class Economy {
         }
         cherry.getCredits().put(target.getUniqueId(), 0.0);
 
-        sendMessage(sender, String.format(getLangString("SET.ONLINE"), target.getName()));
+        sendMessage(sender, String.format(getLangString("RESET.ONLINE"), target.getName()));
         updateScoreboard(target);
     }
 }

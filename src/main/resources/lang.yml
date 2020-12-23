@@ -13,5 +13,9 @@ SET:
   ONLINE: "&8&l* &fYou set &b%s &fcredits to &b%s&f! &7(&aOnline&7)"
   OFFLINE: "&8&l* &fYou set &b%s &fcredits to &b%s&f! &7(&cOffline&7)"
 
+RESET:
+  ONLINE: "&8&l* &fYou reset &b%s &fcredits! &7(&aOnline&7)"
+  OFFLINE: "&8&l* &fYou reset &b%s &fcredits! &7(&cOffline&7)"
+
 USAGE:
   GIVE: "&8&l* &fCommand usage: &b/cherry give (player) (credits)"
