@@ -15,26 +15,24 @@ public class Economy {
     }
 
     public void updateScoreboard(OfflinePlayer player) {
-        if (!player.isOnline()) return;
         cherry.getScoreboardAPI().getAPI().setLineMessage(4, "&fCredits: &e%cherry_credits%", player.getPlayer());
     }
 
     public void sumCredits(CommandSender sender, OfflinePlayer target, Double credits) {
+        double dbCredits = cherry.getMongo().getMongoCredits(target.getUniqueId());
+        double mapCredits = cherry.getCredits().get(target.getUniqueId());
+
         if (!target.isOnline()) {
 
             if (!target.hasPlayedBefore()) {
                 sendMessage(sender, String.format(getLangString("PLAYER-NOT-EXISTS"), target.getName()));
                 return;
             }
-
-            double dbCredits = cherry.getMongo().getMongoCredits(target.getUniqueId());
             cherry.getMongo().updateMongoCredits(target.getUniqueId(), dbCredits + credits);
 
             sendMessage(sender, String.format(getLangString("GIVE.OFFLINE"), credits, target.getName()));
             return;
         }
-
-        double mapCredits = cherry.getCredits().get(target.getUniqueId());
         cherry.getCredits().put(target.getUniqueId(), mapCredits + credits);
 
         sendMessage(sender, String.format(getLangString("GIVE.ONLINE"), credits, target.getName()));
