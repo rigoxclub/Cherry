@@ -10,19 +10,19 @@ public class Logger {
     }
 
     public static void debug (String str) {
-        Bukkit.getConsoleSender().sendMessage(color(String.format("&f[&9DEBUG&f] %s", str)));
+        Bukkit.getConsoleSender().sendMessage(color(String.format("&f[&9DEBUG &7| &fCherry] %s", str)));
     }
 
     public static void warn (String str) {
-        Bukkit.getConsoleSender().sendMessage(color(String.format("&f[&eWARN&f] %s", str)));
+        Bukkit.getConsoleSender().sendMessage(color(String.format("&f[&eWARN &7| &fCherry] %s", str)));
     }
 
     public static void error (String str) {
-        Bukkit.getConsoleSender().sendMessage(color(String.format("&f[&cERROR&f] %s", str)));
+        Bukkit.getConsoleSender().sendMessage(color(String.format("&f[&cERROR &7| &fCherry] %s", str)));
     }
 
     public static void info (String str) {
-        Bukkit.getConsoleSender().sendMessage(color(String.format("&f[&aINFO&f] %s", str)));
+        Bukkit.getConsoleSender().sendMessage(color(String.format("&f[&aINFO &7| &fCherry] %s", str)));
     }
 
     public static void sendMessage(CommandSender sender, String str) {

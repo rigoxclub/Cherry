@@ -1,6 +1,7 @@
 package club.rigox.cherry.hooks;
 
 import club.rigox.cherry.Cherry;
+import club.rigox.cherry.utils.Number;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -39,7 +40,8 @@ public class Placeholders extends PlaceholderExpansion {
         }
 
         if (identifier.equals("credits")) {
-            return cherry.getCredits().get(player.getUniqueId()).toString();
+//            return cherry.getCredits().get(player.getUniqueId()).toString();
+            return Number.format(cherry.getCredits().get(player.getUniqueId()));
         }
 
         return null;
