@@ -9,7 +9,6 @@ import club.rigox.cherry.listeners.PlayerListener;
 import club.rigox.cherry.utils.Config;
 import club.rigox.scoreboard.ScoreboardAPI;
 import co.aikar.commands.PaperCommandManager;
-import me.lucko.commodore.CommodoreProvider;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -70,13 +69,6 @@ public final class Cherry extends JavaPlugin {
             return;
         }
         info("Hooked with ScoreboardAPI successfully!");
-
-        if (!CommodoreProvider.isSupported()) {
-            error("CommodoreProvider isn't supported, disabling plugin...");
-            getServer().getPluginManager().disablePlugin(this);
-            return;
-        }
-        info("Commodore is supported!");
     }
 
     public void registerListeners() {
@@ -86,8 +78,12 @@ public final class Cherry extends JavaPlugin {
 
     public void registerCommands() {
         PaperCommandManager manager = new PaperCommandManager(this);
+        manager.enableUnstableAPI("brigadier");
+
         manager.registerCommand(new CherryCMD(this));
         manager.registerCommand(new CreditsCMD(this));
+        manager.registerCommand(new BrigadierTest());
+
         info("Plugin commands registered");
     }
 
