@@ -9,7 +9,6 @@ import club.rigox.cherry.listeners.PlayerListener;
 import club.rigox.cherry.utils.Config;
 import club.rigox.scoreboard.ScoreboardAPI;
 import co.aikar.commands.PaperCommandManager;
-import me.lucko.commodore.Commodore;
 import me.lucko.commodore.CommodoreProvider;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;

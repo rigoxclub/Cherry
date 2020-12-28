@@ -37,11 +37,6 @@
                 <version>3.2.4</version>
                 <configuration>
                     <dependencyReducedPomLocation>${project.build.directory}/dependency-reduced-pom.xml</dependencyReducedPomLocation>
-                    <artifactSet>
-                        <includes>
-                            <include>me.lucko:commodore</include>
-                        </includes>
-                    </artifactSet>
                     <relocations>
                         <relocation>
                             <pattern>co.aikar.commands</pattern>
@@ -50,11 +45,6 @@
                         <relocation>
                             <pattern>co.aikar.locales</pattern>
                             <shadedPattern>club.rigox.cherry.locales</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>me.lucko.commodore</pattern>
-                            <!-- vvv Replace with the package of your plugin vvv -->
-                            <shadedPattern>club.rigox.cherry.commodore</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
@@ -90,20 +80,12 @@
             <url>https://repo.aikar.co/content/groups/aikar/</url>
         </repository>
         <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-        <repository>
             <id>local-maven-repo</id>
             <url>C:\Users\sebas\.m2\repository</url>
         </repository>
         <repository>
             <id>placeholderapi</id>
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
-        </repository>
-        <repository>
-            <id>minecraft-repo</id>
-            <url>https://libraries.minecraft.net/</url>
         </repository>
     </repositories>
     <dependencies>
@@ -135,12 +117,6 @@
             <artifactId>ScoreboardAPI</artifactId>
             <version>1.9</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>me.lucko</groupId>
-            <artifactId>commodore</artifactId>
-            <version>1.9</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>
