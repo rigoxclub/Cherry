@@ -1,6 +1,7 @@
 package club.rigox.cherry.api;
 
 import club.rigox.cherry.Cherry;
+import club.rigox.cherry.utils.Number;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 
@@ -29,12 +30,12 @@ public class Economy {
         }
 
         if (!target.isOnline()) {
-            double dbCredits = cherry.getMongo().getMongoCredits(uuid);
+            String dbCredits = Number.format(cherry.getMongo().getMongoCredits(uuid));
             sendMessage(sender, String.format(getLangString("CREDITS.OFFLINE"), target.getName(), dbCredits));
             return;
         }
 
-        double mapCredits = cherry.getCredits().get(uuid);
+        String mapCredits = Number.format(cherry.getCredits().get(uuid));
         sendMessage(sender, String.format(getLangString("CREDITS.ONLINE"), target.getName(), mapCredits));
     }
 
