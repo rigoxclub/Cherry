@@ -9,11 +9,14 @@ import club.rigox.cherry.listeners.PlayerListener;
 import club.rigox.cherry.utils.Config;
 import club.rigox.scoreboard.ScoreboardAPI;
 import co.aikar.commands.PaperCommandManager;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
@@ -43,7 +46,7 @@ public final class Cherry extends JavaPlugin {
         registerHooks();
         loadConfigs();
         registerListeners();
-        registerCommands();
+        registerACF();
         mongo.connect();
     }
 
@@ -76,7 +79,7 @@ public final class Cherry extends JavaPlugin {
         info("PlayerListener loaded");
     }
 
-    public void registerCommands() {
+    public void registerACF() {
         PaperCommandManager manager = new PaperCommandManager(this);
         manager.enableUnstableAPI("brigadier");
 
@@ -84,6 +87,16 @@ public final class Cherry extends JavaPlugin {
         manager.registerCommand(new CreditsCMD(this));
 
         info("Plugin commands registered");
+
+        manager.addSupportedLanguage(Locale.ENGLISH);
+        try {
+            manager.getLocales().loadYamlLanguageFile("lang.yml", Locale.ENGLISH);
+        } catch (InvalidConfigurationException | IOException e) {
+            error("[ACF] An error ocurred while reading lang.yml file. " + e);
+            e.printStackTrace();
+            return;
+        }
+        info("ACF hooked successfully on lang.yml");
     }
 
     public void loadConfigs() {

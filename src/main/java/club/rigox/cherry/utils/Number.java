@@ -4,13 +4,11 @@ import org.apache.commons.lang.math.NumberUtils;
 import org.bukkit.command.CommandSender;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
 import static club.rigox.cherry.utils.Config.getLangString;
-import static club.rigox.cherry.utils.Logger.debug;
 import static club.rigox.cherry.utils.Logger.sendMessage;
 
 public class Number {

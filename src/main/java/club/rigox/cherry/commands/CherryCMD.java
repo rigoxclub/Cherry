@@ -1,17 +1,11 @@
 package club.rigox.cherry.commands;
 
 import club.rigox.cherry.Cherry;
-import club.rigox.cherry.utils.Number;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
-import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
-import java.util.UUID;
-
-import static club.rigox.cherry.utils.Config.getLangString;
 import static club.rigox.cherry.utils.Logger.sendMessage;
 
 @CommandAlias("cherry")
