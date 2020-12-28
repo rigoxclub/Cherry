@@ -26,40 +26,16 @@ public class CherryCMD extends BaseCommand {
     @CommandPermission("cherry.give")
     @Syntax("<player> <credits>")
     @CommandCompletion("@players @range:100-100")
-    public void giveCommand(CommandSender sender, String[] args) {
-        if (args.length == 1) {
-            sendMessage(sender, getLangString("USAGE.GIVE"));
-            return;
-        }
-
-        if (args.length == 2) {
-            UUID uuid = cherry.getServer().getPlayerUniqueId(args[0]);
-
-            if (Number.isANumber(sender, args[1])) return;
-            Double credits = Double.parseDouble(args[1]);
-
-            cherry.getEconomy().sumCredits(sender, uuid, credits);
-        }
+    public void giveCommand(CommandSender sender, OfflinePlayer player, double credits) {
+        cherry.getEconomy().sumCredits(sender, player, credits);
     }
 
     @Subcommand("take")
     @CommandPermission("cherry.take")
     @Syntax("<player> <credits>")
-    @CommandCompletion("@players @range:100-100")
-    public void takeCommand(CommandSender sender, String[] args) {
-        if (args.length == 1) {
-            sendMessage(sender, getLangString("USAGE.TAKE"));
-            return;
-        }
-
-        if (args.length == 2) {
-            UUID uuid = cherry.getServer().getPlayerUniqueId(args[0]);
-
-            if (Number.isANumber(sender, args[1])) return;
-            Double credits = Double.parseDouble(args[1]);
-
-            cherry.getEconomy().subtractCredits(sender, uuid, credits);
-        }
+    @CommandCompletion("@players 100|300|500")
+    public void takeCommand(CommandSender sender, OfflinePlayer player, double credits) {
+        cherry.getEconomy().subtractCredits(sender, player, credits);
     }
 
     @Subcommand("set")

@@ -39,44 +39,40 @@ public class Economy {
         sendMessage(sender, String.format(getLangString("CREDITS.ONLINE"), target.getName(), mapCredits));
     }
 
-    public void sumCredits(CommandSender sender, UUID uuid, Double credits) {
-        OfflinePlayer target = cherry.getServer().getOfflinePlayer(uuid);
-
+    public void sumCredits(CommandSender sender, OfflinePlayer target, Double credits) {
         if (!target.hasPlayedBefore()) {
             sendMessage(sender, getLangString("PLAYER-NOT-EXISTS"));
             return;
         }
 
         if (!target.isOnline()) {
-            double dbCredits = cherry.getMongo().getMongoCredits(uuid);
+            double dbCredits = cherry.getMongo().getMongoCredits(target.getUniqueId());
             cherry.getMongo().updateMongoCredits(target.getUniqueId(), dbCredits + credits);
 
             sendMessage(sender, String.format(getLangString("GIVE.OFFLINE"), credits, target.getName()));
             return;
         }
-        double mapCredits = cherry.getCredits().get(uuid);
+        double mapCredits = cherry.getCredits().get(target.getUniqueId());
         cherry.getCredits().put(target.getUniqueId(), mapCredits + credits);
 
         sendMessage(sender, String.format(getLangString("GIVE.ONLINE"), credits, target.getName()));
         updateScoreboard(target);
     }
 
-    public void subtractCredits(CommandSender sender, UUID uuid, Double credits) {
-        OfflinePlayer target = cherry.getServer().getOfflinePlayer(uuid);
-
+    public void subtractCredits(CommandSender sender, OfflinePlayer target, Double credits) {
         if (!target.hasPlayedBefore()) {
             sendMessage(sender, getLangString("PLAYER-NOT-EXISTS"));
             return;
         }
 
         if (!target.isOnline()) {
-            double dbCredits = cherry.getMongo().getMongoCredits(uuid);
+            double dbCredits = cherry.getMongo().getMongoCredits(target.getUniqueId());
             cherry.getMongo().updateMongoCredits(target.getUniqueId(), dbCredits - credits);
 
             sendMessage(sender, String.format(getLangString("TAKE.OFFLINE"), credits, target.getName()));
             return;
         }
-        double mapCredits = cherry.getCredits().get(uuid);
+        double mapCredits = cherry.getCredits().get(target.getUniqueId());
         cherry.getCredits().put(target.getUniqueId(), mapCredits - credits);
 
         sendMessage(sender, String.format(getLangString("TAKE.ONLINE"), credits, target.getName()));
