@@ -82,7 +82,6 @@ public final class Cherry extends JavaPlugin {
 
         manager.registerCommand(new CherryCMD(this));
         manager.registerCommand(new CreditsCMD(this));
-        manager.registerCommand(new BrigadierTest());
 
         info("Plugin commands registered");
     }

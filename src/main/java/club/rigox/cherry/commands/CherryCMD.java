@@ -66,8 +66,8 @@ public class CherryCMD extends BaseCommand {
     @CommandPermission("cherry.set")
     @Syntax("<player> <credits>")
     @CommandCompletion("@players 100|300|500")
-    public void setCommand(CommandSender sender, OfflinePlayer uuid, double credits) {
-        cherry.getEconomy().setCredits(sender, cherry.getServer().getPlayerUniqueId(uuid.toString()), credits);
+    public void setCommand(CommandSender sender, OfflinePlayer player, double credits) {
+        cherry.getEconomy().setCredits(sender, player, credits);
     }
 
     @Subcommand("reset")
@@ -75,8 +75,8 @@ public class CherryCMD extends BaseCommand {
     @Syntax("<player>")
     @CommandCompletion("@players")
     @Description("Reset credits to a player.")
-    public void resetCommand(CommandSender sender, String uuid) {
-        cherry.getEconomy().resetCredits(sender, cherry.getServer().getPlayerUniqueId(uuid));
+    public void resetCommand(CommandSender sender, OfflinePlayer player) {
+        cherry.getEconomy().resetCredits(sender, player);
     }
 
     @Subcommand("admin")

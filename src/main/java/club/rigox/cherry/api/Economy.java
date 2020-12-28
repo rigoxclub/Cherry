@@ -83,9 +83,7 @@ public class Economy {
         updateScoreboard(target);
     }
 
-    public void setCredits(CommandSender sender, UUID uuid, Double credits) {
-        OfflinePlayer target = cherry.getServer().getOfflinePlayer(uuid);
-
+    public void setCredits(CommandSender sender, OfflinePlayer target, Double credits) {
         if (!target.hasPlayedBefore()) {
             sendMessage(sender, getLangString("PLAYER-NOT-EXISTS"));
             return;
@@ -103,9 +101,7 @@ public class Economy {
         updateScoreboard(target);
     }
 
-    public void resetCredits(CommandSender sender, UUID uuid) {
-        OfflinePlayer target = cherry.getServer().getOfflinePlayer(uuid);
-
+    public void resetCredits(CommandSender sender, OfflinePlayer target) {
         if (!target.hasPlayedBefore()) {
             sendMessage(sender, getLangString("PLAYER-NOT-EXISTS"));
             return;
