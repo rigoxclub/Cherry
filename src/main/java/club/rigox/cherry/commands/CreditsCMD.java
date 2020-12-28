@@ -1,6 +1,7 @@
 package club.rigox.cherry.commands;
 
 import club.rigox.cherry.Cherry;
+import club.rigox.cherry.utils.Number;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.CommandCompletion;
@@ -43,7 +44,7 @@ public class CreditsCMD extends BaseCommand {
         }
 
         Player player = (Player) sender;
-        double mapCredits = cherry.getCredits().get(player.getUniqueId());
+        String mapCredits = Number.format(cherry.getCredits().get(player.getUniqueId()));
         sendMessage(player, String.format(getLangString("CREDITS.SELF"), mapCredits));
     }
 }
